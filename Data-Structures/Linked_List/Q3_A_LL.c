@@ -69,7 +69,7 @@ int main()
 			moveOddItemsToBack(&ll); // You need to code this function
 			printf("The resulting linked list after moving odd integers to the back of the linked list is: ");
 			printList(&ll);
-			removeAllItems(&ll);
+			//removeAllItems(&ll);
 			break;
 		case 0:
 			removeAllItems(&ll);
@@ -86,9 +86,39 @@ int main()
 
 void moveOddItemsToBack(LinkedList *ll)
 {
-	/* add your code here */
-}
+	//1. `ll`에 담겨있는 리스트들을 짝과 홀로 나눠 조건문으로 짝과 홀을 담는다.
+	//2. 짝과 홀을 이어 붙여주기 위해 헤드와 테일로 나눠 받는다.
+	//3. 합친다 시벌것
 
+	if(!ll||!ll->head) return;
+
+	ListNode *even_head = NULL, *even_tail = NULL;
+	ListNode *odd_head = NULL, *odd_tail = NULL;
+
+	ListNode *cur = ll->head;
+
+	while(cur){
+		ListNode *next = cur->next;
+		cur->next = NULL;
+
+		if((cur->item&1)==0){
+			if(!even_head) even_head = even_tail = cur;
+			else even_tail->next = cur; even_tail = cur;
+		}else{
+			if(!odd_head) odd_head = odd_tail = cur;
+			else odd_tail->next = cur; odd_tail = cur;
+		}
+		cur = next;
+	}
+
+	//합치기
+	if(even_head){
+		ll->head = even_head;
+		even_tail->next = odd_head;
+	}else{
+		ll->head = odd_head;
+	}
+}
 ///////////////////////////////////////////////////////////////////////////////////
 
 void printList(LinkedList *ll){
