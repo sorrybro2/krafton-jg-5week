@@ -107,20 +107,19 @@ void alternateMergeLinkedList(LinkedList *ll1, LinkedList *ll2)
 	ListNode *p1 = ll1->head;
 	ListNode *p2 = ll2->head;
 
-	if(ll1 == NULL) return;
+	while(p1 && p2){
+		ListNode *p1_next = p1->next; // 다음 ll1 노드 기억
+		ListNode *p2_next = p2->next; // 다음 ll2 노드 기억
 
-	while(p1 != NULL || p2 != NULL){
-		ListNode *p1_next = p1->next;
-		ListNode *p2_next = p2->next;
-
+		//p1 뒤에 p2를 끼움
 		p1->next = p2;
 		p2->next = p1_next;
 
-		p1 = p1->next;
-		p2 = p2->next;
+		p1 = p1_next;
+		p2 = p2_next;
 
-		if(ll1->size > 0) ll1->size++;
-		if(ll2->size > 0) ll2->size--;
+		ll1->size++;
+		ll2->size--;
 	}
 	ll2->head = p2;
 }

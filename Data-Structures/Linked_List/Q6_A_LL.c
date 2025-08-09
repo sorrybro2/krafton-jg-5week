@@ -88,7 +88,29 @@ int main()
 
 int moveMaxToFront(ListNode **ptrHead)
 {
-    /* add your code here */
+	//리스트 중 가장 최대값을 헤드로 옮기는 함수야!
+	if(ptrHead == NULL || *ptrHead == NULL || (*ptrHead)->next == NULL) return 0;
+
+	ListNode *cur = *ptrHead;
+	ListNode *prev = NULL;
+	
+	ListNode *maxHead = *ptrHead;
+	ListNode *maxPrev = NULL;
+
+	while(cur){
+		if(maxHead->item < cur->item){
+			maxHead = cur;
+			maxPrev = prev;
+		}
+		prev = cur;
+		cur = cur->next;
+	}
+	// maxHead 때어내기
+	maxPrev->next = maxHead->next;
+	// ptrHead 전체 주소값을 최댓값에 이어 붙이기
+	maxHead->next = *ptrHead;
+	// ptrHead의 헤드 재설정
+	*ptrHead = maxHead;
 }
 
 //////////////////////////////////////////////////////////////////////////////////
