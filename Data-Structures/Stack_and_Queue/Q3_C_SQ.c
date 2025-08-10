@@ -103,9 +103,32 @@ int main()
 
 int isStackPairwiseConsecutive(Stack *s)
 {
-  /* add your code here */
-}
+	//두 쌍 검사하여 연속된 값이면 return 1을 반환해야하고 아니면 return 0
+	//그리고 홀수 개수일때 바로 return 0
+	if (s->ll.size%2==1) return 0;
 
+	Stack temp;
+	temp.ll.head = NULL;
+	temp.ll.size = 0;
+	temp.ll.tail = NULL;
+
+	while(s){
+		int a = pop(s);
+		int b = pop(s);
+
+		if (abs(a-b)==1) return 1;
+
+ 		// 복원을 위해 (a, b) 순서로 임시 스택에 쌓기
+		//나중에 temp를 s로 되돌리면 최종적으로 (a, b) 원래 순서가 그대로 복원됨
+		
+		push(&temp,a);
+		push(&temp,b);
+	}
+
+	while(temp.ll.head!=NULL){
+		push(s, pop(&temp));
+	}
+}
 //////////////////////////////////////////////////////////////////////////////////
 
 void push(Stack *s, int item){
