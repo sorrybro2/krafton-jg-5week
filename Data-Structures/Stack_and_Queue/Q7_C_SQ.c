@@ -104,7 +104,26 @@ int main()
 ////////////////////////////////////////////////////////////
 int balanced(char *expression)
 {
-/* add your code here */
+	Stack s = {0};
+
+	for(int i = 0; expression[i]!='\0'; i++){
+		char c = expression[i]; //표현식 한 글자씩
+
+		if(c == '(' || c == '{' || c == '['){
+			push(&s, c); //여는 괄호는 push
+		}
+		else if(c == ')' || c == '}' || c == ']'){
+			if(isEmptyStack(&s)) return 1;
+
+			char t = (char)pop(&s); //없는지 확인한 조건문 다음에 pop해야지
+			if((c==')' && t!='(') ||
+			   (c=='}' && t!='{') ||
+			   (c==']' && t!='[' )) {
+				return 1; // 앞 괄호와 맞게 했으면 return 1
+			}
+		}
+	}
+	return isEmptyStack(&s) ? 0 : 1;
 }
 
 ////////////////////////////////////////////////////////////
