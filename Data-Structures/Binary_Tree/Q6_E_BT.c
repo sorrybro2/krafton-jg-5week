@@ -105,7 +105,15 @@ int main()
 
 void printSmallerValues(BTNode *node, int m)
 {
-	/* add your code here */
+    //m보다 작은 노드들을 출력하는 것인데
+    //이진트리는 중위순회로 읽는다. 하지만 m보다 작은 노드를 출력하는 정답을 보면 전위순회인걸 알 수 있다.
+    //그래서 그냥 재귀 돌리면서 printf 하면 된다!!! 개꿀!
+
+    if(node==NULL) return; //기저
+    if(node->item<m) printf("%d ", node->item);
+
+    printSmallerValues(node->left, m);
+    printSmallerValues(node->right, m);
 }
 
 //////////////////////////////////////////////////////////////////////////////////
