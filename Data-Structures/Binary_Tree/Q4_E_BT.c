@@ -101,12 +101,12 @@ int main()
 //////////////////////////////////////////////////////////////////////////////////
 
 int sumOfOddNodes(BTNode *node)
-
 {
+    // 땅끝마을 찾기
     if (node==NULL) return 0;
-
-    int odd = (node->item%2==1)?node->item:0;
-
+    // 홀수면 자기값을 출력하는 변수 생성
+    int odd = (node->item%2==1) ? node->item : 0;
+    // 홀수들의 합만 구해 return
     return odd+sumOfOddNodes(node->left)+sumOfOddNodes(node->right);
 }
 
