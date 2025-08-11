@@ -112,22 +112,16 @@ int isStackPairwiseConsecutive(Stack *s)
 	temp.ll.size = 0;
 	temp.ll.tail = NULL;
 
-	while(s){
+	int ok = 1; //조건문이 안걸리면 참이므로 1을 미리 선언
+
+	while(!isEmptyStack(s)){
 		int a = pop(s);
 		int b = pop(s);
 
-		if (abs(a-b)==1) return 1;
-
- 		// 복원을 위해 (a, b) 순서로 임시 스택에 쌓기
-		//나중에 temp를 s로 되돌리면 최종적으로 (a, b) 원래 순서가 그대로 복원됨
-		
-		push(&temp,a);
-		push(&temp,b);
+		if (abs(a-b)!=1) ok = 0; //연속된 값이 아니면 ok=0
 	}
 
-	while(temp.ll.head!=NULL){
-		push(s, pop(&temp));
-	}
+	return ok; //여기서 최종값ok 리턴
 }
 //////////////////////////////////////////////////////////////////////////////////
 

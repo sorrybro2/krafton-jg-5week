@@ -116,7 +116,19 @@ int main()
 int identical(BTNode *tree1, BTNode *tree2)
 
 {
-   /* add your code here */
+    //재귀를 활용한 값+구조가 같은 트리 구분하는 함수
+
+    //노드가 둘다 없으면 참
+    if(tree1==NULL && tree2==NULL) return 1;
+
+    //노드가 한 쪽만 없으면 거짓 (동일한 트리가 아니니까!)
+    if(tree1==NULL || tree2==NULL) return 0;
+
+    //각 트리 노드 값이 다르면 거짓
+    if(tree1->item != tree2->item) return 0;
+
+    return identical(tree1->left, tree2->left) &&
+           identical(tree2->right, tree2->right);
 }
 
 /////////////////////////////////////////////////////////////////////////////////
