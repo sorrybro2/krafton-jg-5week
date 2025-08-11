@@ -99,9 +99,16 @@ int main()
 //////////////////////////////////////////////////////////////////////////////////
 
 int countOneChildNodes(BTNode *node)
-
 {
-    /* add your code here */
+    //땅끝까지 파기
+    if (node==NULL) return 0;
+
+    //or은 둘다 자식이 있을 경우까지 포함이라 안됨.
+    //그리고 제발 이미 담고 있는 이진 트리가 있으므로 생각을 단순하게 할것..
+    int search = ((node->left==NULL) ^ (node->right==NULL)) ? 1 : 0;
+
+    return search + countOneChildNodes(node->left) + countOneChildNodes(node->right);
+
 }
 
 ///////////////////////////////////////////////////////////////////////////////////
