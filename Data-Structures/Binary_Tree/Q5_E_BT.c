@@ -105,7 +105,17 @@ int main()
 
 void mirrorTree(BTNode *node)
 {
-	/* add your code here */
+    //땅끝마을(기저)
+    if (node==NULL) return 0;
+    
+    //교환
+    BTNode *temp = node->left;
+    node->left = node->right;
+    node->right = temp;
+
+    //재귀
+    mirrorTree(node->left);
+    mirrorTree(node->right);
 }
 
 //////////////////////////////////////////////////////////////////////////////////
