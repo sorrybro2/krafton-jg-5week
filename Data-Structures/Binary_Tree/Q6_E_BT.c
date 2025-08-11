@@ -110,8 +110,9 @@ void printSmallerValues(BTNode *node, int m)
     //그래서 그냥 재귀 돌리면서 printf 하면 된다!!! 개꿀!
 
     if(node==NULL) return; //기저
+    
+    //전위 순회 형태로 printf
     if(node->item<m) printf("%d ", node->item);
-
     printSmallerValues(node->left, m);
     printSmallerValues(node->right, m);
 }
