@@ -88,7 +88,7 @@ void moveOddItemsToBack(LinkedList *ll)
 {
 	//1. `ll`에 담겨있는 리스트들을 짝과 홀로 나눠 조건문으로 짝과 홀을 담는다.
 	//2. 짝과 홀을 이어 붙여주기 위해 헤드와 테일로 나눠 받는다.
-	//3. 합친다 시벌것
+	//3. 합친다
 
 	if(!ll||!ll->head) return;
 
